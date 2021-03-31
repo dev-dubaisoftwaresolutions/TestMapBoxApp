@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TestMapBoxApp</string>
+    <string name="public_access_token" translatable="false">pk.eyJ1IjoiYXRodWx5YW9yIiwiYSI6ImNrbXhiMHFkcTBuOTMydHJudHljeG4xNzYifQ.QSMnqe37dihaaxKYxFcLEQ</string>
+    <string name="private_access_token" translatable="false">sk.eyJ1IjoiYXRodWx5YW9yIiwiYSI6ImNrbXhqbm1qMTBwa2wycG16aWpndzJqZHEifQ.-bAyz1Tjk02gQnGduWKF8w</string>
+    <string name="user_location_permission_explanation">This app needs location permissions to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+</resources>
