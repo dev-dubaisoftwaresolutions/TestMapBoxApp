@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // variables needed to initialize navigation
         private Button button;
 
+          static Context context ;
+
         double latitude=0.0;
         double longitude=0.0;
 
@@ -80,17 +83,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Mapbox.getInstance(this, getString(R.string.private_access_token));
             setContentView(R.layout.activity_main);
 
+            context = MainActivity.this;
+
             viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
             viewModel.getUserDetails().observe(this, new Observer<List<User>>() {
                 @Override
                 public void onChanged(List<User> users) {
 
-                    Log.e("latitude%%",users.get(0).getLatitude());
-                    Log.e("longitude%%",users.get(0).getLongitude());
+                    if(users.size()>0) {
 
-                    latitude = Double.parseDouble(users.get(0).getLatitude());
-                    longitude = Double.parseDouble(users.get(0).getLongitude());
+                        Log.e("latitude%%", users.get(0).getLatitude());
+                        Log.e("longitude%%", users.get(0).getLongitude());
+
+                        latitude = Double.parseDouble(users.get(0).getLatitude());
+                        longitude = Double.parseDouble(users.get(0).getLongitude());
+                    }
+
                 }
             });
 
@@ -105,6 +114,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
+
+                            if(longitude==0.0 || latitude==0.0){
+                                latitude =25.180548;
+                                longitude=55.267450;
+                            }
 
                             Point destinationPoint = Point.fromLngLat(longitude, latitude);
                             Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
