@@ -9,7 +9,7 @@ public class RetrofitInstance {
         if (retrofit == null) {
             retrofit = new Retrofit
                     .Builder()
-                    .baseUrl("https://api.mocki.io/v1/")
+                    .baseUrl("https://px9w6gzsp0.api.quickmocker.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
